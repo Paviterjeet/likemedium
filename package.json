@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Blog App like Medium.com",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "nodemon main"
+    "start": "nodemon main"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,13 @@
   "bugs": {
     "url": "https://github.com/Paviterjeet/likemedium/issues"
   },
-  "homepage": "https://github.com/Paviterjeet/likemedium#readme"
+  "homepage": "https://github.com/Paviterjeet/likemedium#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "mongoose": "^8.12.2"
+  }
 }
