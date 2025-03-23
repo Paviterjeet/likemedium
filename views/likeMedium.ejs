@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write Your Blog - Medium Style</title>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+        .editor-container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-control, select {
+            border: none;
+            font-size: 1.2rem;
+            padding: 10px;
+            width: 100%;
+            resize: none;
+            outline: none;
+            background: transparent;
+        }
+        #editor {
+            min-height: 300px;
+        }
+        .cover-image-preview {
+            width: 100%;
+            height: auto;
+            display: none;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        .publish-btn {
+            background-color: #28a745;
+            color: white;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .publish-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="editor-container">
+        <form action="/submit" method="POST" enctype="multipart/form-data">
+
+            <!-- Blog Title (Auto-expanding like Medium) -->
+            <input type="text" name="blogTitle" class="form-control fw-bold mb-3" placeholder="Title" required>
+
+            <!-- Cover Image Upload -->
+            <input type="file" name="blogImage" class="form-control" accept="image/*" id="coverImageInput">
+            <img id="coverImagePreview" class="cover-image-preview">
+
+            <!-- Blog Category -->
+            <select name="blogCategory" class="form-control mt-3" required>
+                <option value="">Select a Category</option>
+                <option value="Tech">Tech</option>
+                <option value="Food">Food</option>
+                <option value="Travel">Travel</option>
+                <option value="Health">Health</option>
+                <option value="Business">Business</option>
+                <option value="Lifestyle">Lifestyle</option>
+            </select>
+
+            <!-- Blog Date -->
+            <input type="date" name="blogDate" class="form-control mt-3" required>
+
+            <!-- Blog Keywords -->
+            <input type="text" name="blogKeywords" class="form-control mt-3" placeholder="Keywords (comma-separated)">
+
+            <!-- Blog Description -->
+            <textarea name="blogDescription" class="form-control mt-3" rows="3" placeholder="Short description..." required></textarea>
+
+            <!-- Blog Content (Medium-style rich text editor) -->
+            <div id="editor" class="mt-3"></div>
+            <input type="hidden" name="blogContent" id="blogContent">
+
+            <!-- Publish Button -->
+            <button type="submit" class="publish-btn">🚀 Publish</button>
+
+        </form>
+    </div>
+
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <script>
+        var quill = new Quill('#editor', {
+            theme: 'snow',
+            placeholder: 'Write your blog here...',
+        });
+
+        document.querySelector("form").addEventListener("submit", function () {
+            document.getElementById("blogContent").value = quill.root.innerHTML;
+        });
+
+        // Cover Image Preview
+        document.getElementById("coverImageInput").addEventListener("change", function(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var output = document.getElementById("coverImagePreview");
+                output.src = reader.result;
+                output.style.display = "block";
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        });
+    </script>
+
+</body>
+</html>
