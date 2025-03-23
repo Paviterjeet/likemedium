@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Paviterjeet/likemedium#readme",
   "dependencies": {
+    "body-parser": "^1.20.3",
     "cookie-parser": "^1.4.7",
     "dotenv": "^16.4.7",
     "ejs": "^3.1.10",

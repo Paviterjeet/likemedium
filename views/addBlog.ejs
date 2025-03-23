@@ -8,80 +8,128 @@
         }
     </style>
 
-<section class="pt-5" style="background-color: #f8f9fa;">
-    <div class="container py-5 mt-5">
-        <div class="row d-flex justify-content-center align-items-center">
-            <div class="col-md-8">
-                <div class="card shadow-lg p-4">
-                    <h2 class="text-center mb-4">📝 Write New Blog</h2>
+    <section class="pt-5" style="background-color: #f8f9fa;">   
+        <div class="container py-5 mt-5">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-md-8">
+                    <div class="card shadow-lg p-4">
+                        <h2 class="text-center mb-4">📝 Write New Blog</h2>
 
-                    <form action="/submit" method="POST" enctype="multipart/form-data">
-                        
-                        <!-- Blog Title -->
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Blog Title</label>
-                            <input class="form-control" type="text" name="blogTitle" placeholder="Enter Blog Title" required>
-                        </div>
+                        <form action="/submit" method="POST" enctype="multipart/form-data">
 
-                        <!-- Blog Cover Image Upload -->
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Cover Image</label>
-                            <input type="file" class="form-control" name="blogImage" accept="image/*" required>
-                        </div>
+                            <!-- Blog Title -->
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Blog Title</label>
+                                <input class="form-control" type="text" name="blogTitle" placeholder="Enter Blog Title"
+                                    required>
+                            </div>
 
-                        <!-- Blog Category Select -->
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Category</label>
-                            <select class="form-select" name="blogCategory" required>
-                                <option value="">Select a Category</option>
-                                <option value="Tech">Tech</option>
-                                <option value="Food">Food</option>
-                                <option value="Travel">Travel</option>
-                                <option value="Health">Health</option>
-                                <option value="Business">Business</option>
-                                <option value="Lifestyle">Lifestyle</option>
-                            </select>
-                        </div>
+                            <!-- Blog Cover Image Upload -->
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Cover Image</label>
+                                <input type="file" class="form-control" name="blogImage" accept="image/*" required>
+                            </div>
 
-                        <!-- Blog Date Picker -->
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Blog Date</label>
-                            <input type="date" class="form-control" name="blogDate" required>
-                        </div>
+                            <!-- Blog Category Select -->
+                            <!-- <div class="mb-3">
+                                <label class="form-label fw-bold">Category</label>
+                                <select class="form-select" name="blogCategory" required>
+                                    <option value="">Select a Category</option>
+                                    <option value="Tech">Tech</option>
+                                    <option value="Food">Food</option>
+                                    <option value="Travel">Travel</option>
+                                    <option value="Health">Health</option>
+                                    <option value="Business">Business</option>
+                                    <option value="Lifestyle">Lifestyle</option>
+                                </select>
+                            </div> -->
 
-                        <!-- Blog Keywords -->
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Keywords</label>
-                            <input type="text" class="form-control" name="blogKeywords" placeholder="Enter keywords (comma-separated)">
-                        </div>
+                            <!-- Blog Category Select -->
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Category</label>
+                                <select class="form-select" name="blogCategory" id="categorySelect" required>
+                                    <option value="">Select a Category</option>
+                                    <option value="Tech">Tech</option>
+                                    <option value="Food">Food</option>
+                                    <option value="Travel">Travel</option>
+                                    <option value="Health">Health</option>
+                                    <option value="Business">Business</option>
+                                    <option value="Lifestyle">Lifestyle</option>
+                                </select>
+                            </div>
 
-                        <!-- Blog Description -->
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Blog Description</label>
-                            <textarea class="form-control" name="blogDescription" rows="3" placeholder="Short description about the blog" required></textarea>
-                        </div>
+                            <!-- Category Input for New Entry -->
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Can't Find Your Category? Type Here</label>
+                                <input type="text" class="form-control" id="customCategoryInput"
+                                    placeholder="Type a one-word category (e.g., Fitness, Tech)">
+                            </div>
 
-                        <!-- Blog Content (Rich Text Editor) -->
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Blog Content</label>
-                            <div id="editor" class="border rounded p-2"></div>
-                            <input type="hidden" name="blogContent" id="blogContent">
-                        </div>
+                            <!-- Blog Date Picker -->
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Blog Date</label>
+                                <input type="date" class="form-control" name="blogDate" required>
+                            </div>
 
-                        <!-- Submit Button -->
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary px-5">🚀 Publish</button>
-                        </div>
+                            <!-- Blog Keywords -->
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Keywords</label>
+                                <input type="text" class="form-control" name="blogKeywords"
+                                    placeholder="Enter keywords (comma-separated)">
+                            </div>
 
-                    </form>
+                            <!-- Blog Description -->
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Blog Description</label>
+                                <textarea class="form-control" name="blogDescription" rows="3"
+                                    placeholder="Short description about the blog" required></textarea>
+                            </div>
+
+                            <!-- Blog Content (Rich Text Editor) -->
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Blog Content</label>
+                                <div id="editor" class="border rounded p-2"></div>
+                                <input type="hidden" name="blogContent" id="blogContent">
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary px-5">🚀 Publish</button>
+                            </div>
+
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
 
-
+    <script>
+        document.getElementById("customCategoryInput").addEventListener("blur", function() {
+            var inputText = this.value.trim();
+            var firstWord = inputText.split(" ")[0]; // Get the first word only
+            var select = document.getElementById("categorySelect");
+    
+            if (firstWord.length > 0) {
+                // Check if the option already exists
+                var exists = Array.from(select.options).some(option => option.value.toLowerCase() === firstWord.toLowerCase());
+    
+                if (!exists) {
+                    // Create a new option
+                    var newOption = document.createElement("option");
+                    newOption.value = firstWord;
+                    newOption.textContent = firstWord;
+    
+                    // Append the new option to the select dropdown
+                    select.appendChild(newOption);
+    
+                    // Select the new option automatically
+                    select.value = firstWord;
+                }
+            }
+        });
+    </script>
 
 
     <!-- Include Quill -->
