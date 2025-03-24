@@ -72,7 +72,13 @@
                         </li>
                     </ul>
                     <span class="nav-item">
-                        <a class="btn-outline-sm" href="/login">Log in</a>
+                        <% if(typeof session.email !=='undefined' && session.email !== ''){ %>
+                            <a class="btn-outline-sm" href="/logout">Log Out</a>
+
+<% }else{%>
+    <a class="btn-outline-sm" href="/login">Log in</a>
+    <%   }%>
+                        
                     </span>
                 </div> <!-- end of navbar-collapse -->
             </div> <!-- end of container -->

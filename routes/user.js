@@ -5,7 +5,8 @@ router.get('/',(req,res)=>{
     res.render('profile')
 })
 router.get('/edit',(req,res)=>{
-    res.render('userProfile')
+    const email = req.session.email
+    res.render('userProfile',{email})
 })
 
 export default router
