@@ -3,7 +3,9 @@ const router = e.Router()
 import {handleSignUp} from "../controller/signup.js"
 
 router.get('/',(req,res)=>{
-    res.render('sign-up')
+     const {email,fullname,mobile, error} = ""
+
+    res.render('sign-up' , {email ,fullname , mobile, error})
 })
 
 router.post('/submit',handleSignUp)
