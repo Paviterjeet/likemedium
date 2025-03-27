@@ -1,6 +1,15 @@
 import e from "express"
 const router = e.Router()
 
+// router.use((req, res, next) =>{
+//     // console.log(req.session.email)
+//      if(typeof req.session.email == 'undefined' )
+//      {
+//          res.redirect('/signup')
+//      }
+//      console.log("session ke bahar aa gya")
+//  next()
+//  });
 router.get('/',(req,res)=>{
     res.render('profile')
 })
