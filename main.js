@@ -12,27 +12,33 @@ import { authMiddleware } from "./middleware/authMiddleware.js";
 
 const app = e()
 
+// Middlewares 
+// Serve static files
+app.use('/uploads', e.static('uploads'));
+// Set EJS as view engine
+app.set('view engine', 'ejs')
+app.use(e.static('public'))
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(session({                                                                                 //Step -2
     secret: "dddsddswf23r344f3f",
     resave: false,
     saveUninitialized: true
 }));
+
 // Load environment variables
 dotenv.config();
+
+// Connection
 const PORT = process.env.PORT
 mongoose.connect(process.env.MONGO_URI).then(()=> console.log("connected")).catch((err)=>console.log("DB not connected"))
-
-
 
 app.use((req, res, next) => {
     res.locals.session = req.session;  // Make session available globally in EJS
     next();
 });
 
-// Set EJS as view engine
-app.set('view engine', 'ejs')
-app.use(e.static('public'))
-app.use(bodyParser.urlencoded({ extended: true }));
+// routes
 app.use("/signup",signupRouter)
 app.use("/login",loginRouter)
 app.use("/user",authMiddleware,userRouter)
