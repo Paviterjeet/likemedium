@@ -20,14 +20,13 @@ const storage = multer.diskStorage({
 // File Upload Configuration
 const upload = multer({ storage: storage });
 
-
 router.get('/',async (req,res)=>{
 
     const email = req.session.email
     try {
    
         const userProfile = await user.findOne({email : email.email})
-        const userBlogs = await blogs.find({email : email.email})
+        const userBlogs = await blogs.find({email : email.email}).sort({ createdAt: -1 });
    
         if(!userProfile){
           
@@ -47,11 +46,12 @@ router.get('/edit', async(req,res)=>{
    
     const email = req.session.email
     try {
+        
         const userProfile = await user.findOne({email : email.email})
         if(!userProfile){
-            res.render('userProfile',{email})
+            res.render('userProfile',{email,userProfile: req.session.user})
         }else{ 
-            res.render('userProfile',{userProfile})
+            res.render('userProfile',{email, userProfile})
         }
     } catch (error) {
         console.log(error)

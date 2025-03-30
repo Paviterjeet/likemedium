@@ -5,6 +5,12 @@ const blogSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    writerName: {
+        type: String,
+    },
+    profileImage: {
+        type: String,
+    },
     blogTitle: {
         type: String,
         required: true,
@@ -38,11 +44,9 @@ const blogSchema = new mongoose.Schema({
     blogContent: {
         type: String,
     },
-    createdAt: {
-        type: Date,
-        default: Date.now
-    }
-});
+    createdAt: { type: Date, default: Date.now }, // Timestamp stored here
+}, { timestamps: true }
+);
 
 const blogs = mongoose.model("blogs" , blogSchema)
 

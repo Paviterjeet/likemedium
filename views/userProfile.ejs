@@ -35,7 +35,7 @@
                                     <div class="col-md-6">
                                         <label for="inputEmail4" class="form-label">Email *</label>
                                         <input type="email" class="form-control" name="email"
-                                            value="<%= userProfile ? userProfile.email : '' %>" >
+                                            value="<%= email ? email.email : '' %>" >
                                     </div>
                                     <!-- Pronouns -->
                                     <div class="col-md-6">
@@ -101,7 +101,7 @@
                                     <h4 class="mb-3 mt-0">Upload profile photo</h4>
                                     <div class="text-center">
                                         <!-- Image upload -->
-                                        <img id="profilePreview" src="<%= userProfile ? userProfile.profile : 'images/profile.png' %>" class="square position-relative display-2 mb-3"
+                                        <img id="profilePreview" src="<%= userProfile.profile ? userProfile.profile : 'images/profile.png' %>" class="square position-relative display-2 mb-3"
                                             style="width: 220px;height: 220px;border-radius: 50%;" />
                                         
                                         <!-- File Input -->
@@ -120,7 +120,7 @@
                                     <h4 class="mb-4 mt-0">Upload cover image</h4>
                                     <div class="text-center">
                                         <!-- Image upload -->
-                                        <img id="coverPreview" src="<%= userProfile ? userProfile.cover : 'images/cover.jpeg' %>" class="square position-relative display-2 mb-3"
+                                        <img id="coverPreview" src="<%= userProfile.cover ? userProfile.cover : 'images/cover.jpeg' %>" class="square position-relative display-2 mb-3"
                                             style="height: 100px; width: 200px;" />
                                         
                                         <!-- File Input -->

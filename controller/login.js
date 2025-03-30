@@ -5,7 +5,7 @@ export const handleLogin = async (req ,res) => {
     const {email , password }  = req.body
     try {
         // Check db response 
-        const user = await signUp.findOne({email}).select('+password');
+        const user = await signUp.findOne({email}).select('+password +fullname +email +mobile');
         if (!user) {
             return res.render('log-in', {
                 errorField: 'email',
@@ -24,8 +24,9 @@ export const handleLogin = async (req ,res) => {
             })
         }
         req.session.email = {email}
+        req.session.user = user
         //  login access
-        res.redirect('/user/edit/');
+        res.redirect('/user/');
 
     } catch (error) {
         console.error("Login error:", error);

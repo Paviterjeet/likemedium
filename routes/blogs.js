@@ -15,7 +15,7 @@ const upload = multer({storage})
 
 router.get('/', async(req,res)=>{
     try {
-        const userBlogs = await blogs.find({})       
+        const userBlogs = await blogs.find().sort({ createdAt: -1 });       
         res.render('blogs',{userBlogs})
     } catch (error) {
         console.log(error)
