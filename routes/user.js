@@ -1,6 +1,7 @@
 import e from "express"
 import multer from "multer";
 import user from "../models/userprofile.mongodb.js";
+import blogs from "../models/blog.mongodb.js"
 const router = e.Router()
 
 import {handleUserProfile} from "../controller/user.js"
@@ -21,21 +22,22 @@ const upload = multer({ storage: storage });
 
 
 router.get('/',async (req,res)=>{
-console.log(1)
+
     const email = req.session.email
-    console.log(email)
     try {
-        console.log(3)
+   
         const userProfile = await user.findOne({email : email.email})
+        const userBlogs = await blogs.find({email : email.email})
+   
         if(!userProfile){
-            console.log(4)
-            res.render('profile',{email})
+          
+            res.render('profile',{email,userBlogs})
         }else{ 
-            console.log(5)
-            res.render('profile',{userProfile})
+           
+            res.render('profile',{userProfile,userBlogs})
         }
     } catch (error) {
-        console.log(6)
+       
         console.log(error)
     }
 

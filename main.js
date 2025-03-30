@@ -15,9 +15,11 @@ const app = e()
 // Middlewares 
 // Serve static files
 app.use('/uploads', e.static('uploads'));
+app.use('/blogCover', e.static('blogCover'));
 // Set EJS as view engine
 app.set('view engine', 'ejs')
 app.use(e.static('public'))
+app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(session({                                                                                 //Step -2
