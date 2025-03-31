@@ -56,7 +56,7 @@
                       </span>
                       Save
                     </a>
-                    <a href="#!" class="btn btn-outline-white">Ask questions</a>
+                    <a href="/blogs/add" class="btn btn-outline-white link-a">Write a Blog</a>
                   </div>
                 </div>
                 <div class="d-flex flex-md-row flex-column gap-md-4 gap-2">
@@ -130,7 +130,7 @@
                 <p class="mb-0 text-uppercase"><i class="fas fa-link ms-4 me-2"></i> <span
                         class="text-muted small">1 day ago</span></p>
                 <p class="mb-0 text-uppercase"><i class="fas fa-ellipsis-h ms-4 me-2"></i>
-                    <span class="text-muted small"><a href="/blog/<%= blog.blogSlug %>">Read More</a></span>
+                    <span class="text-muted small"><a href="/blogs/<%= blog.blogSlug %>">Read More</a></span>
                     <span class="ms-3 me-4">|</span>
                 </p>
                 <a href="#!">
@@ -148,7 +148,7 @@
           
           <div class="col-md-4 pe-5">
             <div class="py-5">
-              <a href="/blog/<%= blog.slug %>">
+              <a href="/blogs/<%= blog.blogSlug %>">
                 <img src="<%= blog.blogImage || 'images/default-blog.png' %>" alt="blog image" class="img-fluid">
               </a>
             </div>

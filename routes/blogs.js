@@ -19,10 +19,10 @@ router.get('/', async(req,res)=>{
         res.render('blogs',{userBlogs})
     } catch (error) {
         console.log(error)
-    }
-
-    
+    }    
 })
+
+
 router.get('/myBlogs', async(req,res)=>{
     const email = req.session.email
     try {
@@ -48,4 +48,18 @@ router.post('/save',upload.fields([
     {name:"blogImage",maxCount:1}
 ]),handleBlogCreation)
 
+router.get('/:slug', async(req,res)=>{
+    try {
+     const blogSlug = req.params.slug;
+         const blog = await blogs.findOne({blogSlug})
+         if(!blog){
+             res.status(404).json({error : "Data Not Found"})
+         }
+        
+         res.render('blog',{blog})
+    } catch (error) {
+         res.status(500).json({error : "Internal Server Error"})
+    }
+    
+ })
 export default router
