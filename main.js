@@ -8,6 +8,7 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import dotenv from "dotenv"
 import session from "express-session";
+import methodOverride from "method-override"
 import { authMiddleware } from "./middleware/authMiddleware.js";
 
 const app = e()
@@ -19,6 +20,8 @@ app.use('/blogCover', e.static('blogCover'));
 // Set EJS as view engine
 app.set('view engine', 'ejs')
 app.use(e.static('public'))
+app.use(methodOverride('_method')); // Allows method overriding using `_method` query parameter
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -37,6 +40,10 @@ mongoose.connect(process.env.MONGO_URI).then(()=> console.log("connected")).catc
 
 app.use((req, res, next) => {
     res.locals.session = req.session;  // Make session available globally in EJS
+    next();
+});
+app.use((req, res, next) => {
+    console.log(`🟡 ${req.method} request to ${req.url}`);
     next();
 });
 

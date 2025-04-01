@@ -26,7 +26,7 @@ export const handleLogin = async (req ,res) => {
         req.session.email = {email}
         req.session.user = user
         //  login access
-        res.redirect('/user/');
+        res.redirect('/user');
 
     } catch (error) {
         console.error("Login error:", error);
