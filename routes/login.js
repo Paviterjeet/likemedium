@@ -4,6 +4,7 @@ const router = e.Router()
 
 
 router.get('/',(req,res)=>{
+    res.locals.profileImage = null;
     res.render('log-in')
 })
 router.post('/login',handleLogin)

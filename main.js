@@ -40,6 +40,9 @@ mongoose.connect(process.env.MONGO_URI).then(()=> console.log("connected")).catc
 
 app.use((req, res, next) => {
     res.locals.session = req.session;  // Make session available globally in EJS
+    console.log(typeof res.locals.profileImage)
+    res.locals.profileImage = req.session.profileImage // Default image if not set
+    console.log(typeof res.locals.profileImage)
     next();
 });
 app.use((req, res, next) => {

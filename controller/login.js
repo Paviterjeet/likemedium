@@ -1,12 +1,13 @@
 import signUp from "../models/signup.mongodb.js"
 import bcrypt from "bcrypt"
+import user from "../models/userprofile.mongodb.js"
 
 export const handleLogin = async (req ,res) => {
     const {email , password }  = req.body
     try {
         // Check db response 
-        const user = await signUp.findOne({email}).select('+password +fullname +email +mobile');
-        if (!user) {
+        const findUser = await signUp.findOne({email}).select('+password +fullname +email +mobile');
+        if (!findUser) {
             return res.render('log-in', {
                 errorField: 'email',
                 error: "Email doesn't exist!",
@@ -15,7 +16,7 @@ export const handleLogin = async (req ,res) => {
         }
 
         // Compare hashed password
-        const passwordMatch = await bcrypt.compare(password, user.password);
+        const passwordMatch = await bcrypt.compare(password, findUser.password);
         if (!passwordMatch) {
             return res.render('log-in', {
                 errorField: 'password',
@@ -23,9 +24,18 @@ export const handleLogin = async (req ,res) => {
                 userData: { email, password: '' }
             })
         }
+        const existingUser = await user.findOne({ email })
+        if(!existingUser){
+            req.session.profileImage = 'images/profile.png'
+        }else{
+            req.session.profileImage = existingUser.profile
+            console.log(existingUser.profile)
+        }
+        
         req.session.email = {email}
         req.session.user = user
         //  login access
+    
         res.redirect('/user');
 
     } catch (error) {

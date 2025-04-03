@@ -6,6 +6,7 @@ router.get("/", (req, res) => {
         if (err) {
             return res.send("Error logging out");
         }
+        res.locals.profileImage = null;
         res.redirect("/login"); // Redirect to home page after logout
     });
 });
